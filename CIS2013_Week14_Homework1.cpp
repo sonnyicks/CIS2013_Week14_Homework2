@@ -1,10 +1,11 @@
 #include <iostream>
 #include <string>
+#include <fstream>
 #include "ToDo.h"
 using namespace std;
-
+	
 ToDo::ToDo(){
-	ToDo(5);
+
 }
 
 int main(){
@@ -12,14 +13,15 @@ int main(){
 	int len = 0;
 	string action;
 	
+	
 	cout << "How long do you want your list?: ";
 	cin >> len;
 	
 	ToDo list(len);
-	
+	list.retrieve();
+
 	//Array of ToDo objects
 	//Make sure you have a () constructor 
-	ToDo manylists[10];
 	
 	while (next != 'x'){
 		
@@ -29,11 +31,13 @@ int main(){
 		cout << "Exit list app (x)" << endl;
 		cout << "What do you want to do: ";
 		cin >> next;
+		cin.ignore();
 		
 		switch(next){
 			case 'a':
 			cout << "add...";
-			cin >> action;
+			getline(cin, action, '\n');
+			cout << action;
 			list.add(action);
 			break;
 			case 'd':
@@ -45,6 +49,7 @@ int main(){
 			case 'x':
 			//all done with list
 			break;
+			
 		}
 	}
 	return 0;

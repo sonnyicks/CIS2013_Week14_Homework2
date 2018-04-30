@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <fstream>
 using namespace std;
 
 class ToDo{
@@ -8,11 +9,13 @@ class ToDo{
 		string *list;
 		int length = 0;
 		int next = 0;
+		ifstream ins;
+		ofstream out;
 	
 	public:
 	
-	//Default constructor 
-	ToDo();
+		//Default constructor 
+		ToDo();
 	
 		//create list of length l
 		ToDo(int len);
@@ -28,4 +31,12 @@ class ToDo{
 		
 		//print list
 		void print();
+		
+		void print_file();
+		
+		void openstream();
+		
+		void retrieve();
+		
+		void file();
 };

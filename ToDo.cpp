@@ -32,8 +32,9 @@ void ToDo::done(){
 //print stuff
 void ToDo::print(){
 	for(int i=0; i<next; i++){
-		cout << " * " << list[i] << endl;
-	}		
+		cout << i+1 << ". " << list[i] << endl;
+	}	
+	cout << endl;
 }
 
 void ToDo::print_file(){
@@ -55,7 +56,6 @@ void ToDo::retrieve(){
 		while(!ins.eof()){
 			getline(ins, a);
 			cout << a << endl;
-			// list[i]=a;
 			add(a);
 		}
 	}

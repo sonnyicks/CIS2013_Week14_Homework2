@@ -7,6 +7,7 @@ using namespace std;
 ToDo::ToDo(int len){
 	length = len;
 	list = new string[length];
+	retrieve();
 }
 
 ToDo::~ToDo(){
@@ -25,7 +26,14 @@ void ToDo::add(string i){
 		
 //completed stuff
 void ToDo::done(){
+	int rmv=0;
+	cout << "Enter the number of the finished task: ";
+	cin >> rmv;
 	next--;
+	//move the items up the list
+	for (int i=rmv; i<=next; i++){
+		list[i-1]=list[i];
+	}
 	list[next] = "";
 }
 		
@@ -38,7 +46,7 @@ void ToDo::print(){
 }
 
 void ToDo::print_file(){
-	out.open("test.dat");
+	out.open("savedlist.dat");
 	for (int i=0; i<=length; i++){
 		out << list[i] << endl;
 	}
@@ -48,18 +56,21 @@ void ToDo::retrieve(){
 	ifstream ins;
 	string a;
 	
-	ins.open("test.dat");
+	ins.open("savedlist.dat");
 	if(ins.fail()){
-		cout << "Unable to open file - Starting new list.";
+		cout << "Unable to open file - Starting new list. \n";
 	}
-	for(int i=0; i<=length; i++){
-		while(!ins.eof()){
-			getline(ins, a);
-			cout << a << endl;
-			add(a);
+	else{
+		cout << "Saved list found. Importing..." << endl;
+		for(int i=0; i<=length; i++){
+			while(!ins.eof()){
+				getline(ins, a);
+				add(a);
+			}
 		}
+		print();
+		ins.close();
 	}
-	ins.close();
 }
 
 //HW 2 - Support ToDo Items w/ spaces

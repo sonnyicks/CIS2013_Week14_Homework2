@@ -10,13 +10,15 @@ ToDo::ToDo(int len){
 }
 
 ToDo::~ToDo(){
-	void print_file();
+	// void print_file();
 	delete [] list;
 }
 //add stuff
-void ToDo::add(string item){
+void ToDo::add(string i){
 	if (next<length){
-		list[next] = item;
+		// cin.ignore();
+		// getline(i, '\n');
+		list[next] = i;
 		next++;
 	}
 }
@@ -42,25 +44,22 @@ void ToDo::print_file(){
 }
 
 void ToDo::retrieve(){ 
-	char x;
-	int brk = 0;
 	ifstream ins;
+	string a;
 	
 	ins.open("test.dat");
 	if(ins.fail()){
 		cout << "Unable to open file - Starting new list.";
 	}
-//Retrieves each line in file as string
-//figure out how to save existing list
-	for(int i=0; i<length; i++){
-		do{
-			ins.get(x);
-			list[i]+=x;
-			if (x=='\n'){
-				brk++;
-				cout << list[i];} 
-		}while((x!='\n')&&(brk<=length));
+	for(int i=0; i<=length; i++){
+		while(!ins.eof()){
+			getline(ins, a);
+			cout << a << endl;
+			// list[i]=a;
+			add(a);
+		}
 	}
+	ins.close();
 }
 
 //HW 2 - Support ToDo Items w/ spaces

@@ -34,8 +34,6 @@ class ToDo{
 		
 		void print_file();
 		
-		void openstream();
-		
 		void retrieve();
 		
 		void file();

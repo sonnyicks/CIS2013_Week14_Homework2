@@ -11,14 +11,13 @@ ToDo::ToDo(int len){
 }
 
 ToDo::~ToDo(){
-	// void print_file();
+	print_file();
+	cout << "Saving..." << endl;
 	delete [] list;
 }
 //add stuff
 void ToDo::add(string i){
 	if (next<length){
-		// cin.ignore();
-		// getline(i, '\n');
 		list[next] = i;
 		next++;
 	}
@@ -47,9 +46,13 @@ void ToDo::print(){
 
 void ToDo::print_file(){
 	out.open("savedlist.dat");
-	for (int i=0; i<=length; i++){
+	if (out.fail()){
+		cout << "Save failed -" << endl;
+	}
+	for (int i=0; i<=next; i++){
 		out << list[i] << endl;
 	}
+	out.close();
 }
 
 void ToDo::retrieve(){ 
